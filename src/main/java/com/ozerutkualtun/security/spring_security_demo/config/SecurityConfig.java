@@ -34,6 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin() // customizing login page.
                 .loginPage("/showMyLoginPage")
                 .loginProcessingUrl("/authenticateUser")  // Login form should POST data to this URL for processing. Development not required. Spring security handle this :)
-                .permitAll(); // Everyone can see the login form.
+                .permitAll() // Everyone can see the login form.
+                .and()
+                .logout()  // default -> /logout
+                .permitAll();
     }
 }

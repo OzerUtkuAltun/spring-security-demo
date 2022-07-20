@@ -38,6 +38,10 @@
             <i style="margin-top: 5px; color: red;">Sorry! You entered invalid username or password!</i>
         </c:if>
 
+        <c:if test="${param.logout != null}">
+            <i style="color: green">You have been logged out.</i>
+        </c:if>
+
     </div>
 
 
