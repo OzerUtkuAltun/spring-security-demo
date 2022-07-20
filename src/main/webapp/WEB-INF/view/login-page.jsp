@@ -18,6 +18,15 @@
 
 <form:form action="${pageContext.request.contextPath}/authenticateUser" method="POST">
 
+<%--    Not: form:form'un CSRF koruması var. Aşağıdaki işlemi otomatik olarak yapıyor. Eğer form:form dışında bir yapı kullanılacaksa CSRF koruması sonradan eklenmeli.
+        Bkz:
+        <input type="hidden
+               name="${_csrf.parameterName}"
+               value="${_csrf.token}"
+        "/>
+
+--%>
+
     <div style="width: 35%; padding-top: 35px; padding-left: 35px;">
         <div class="form-outline mb-4">
             <label class="form-label" for="username">Username</label>
