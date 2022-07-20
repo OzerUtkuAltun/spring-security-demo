@@ -1,18 +1,23 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>Company Home Page</title>
 </head>
 <body>
 
-    <h2>Company Home Page</h2>
-    <hr>
-    Welcome to company home page!
-    <hr>
-    <form:form action="${pageContext.request.contextPath}/logout" method="POST">
+<h2>Company Home Page</h2>
+<hr>
+Welcome to company home page! <br>
 
-        <input type="submit" value="Logout"/>
-    </form:form>
+<%--    displaying user ID--%>
+User: <security:authentication property="principal.username"/> <br>
+Role(s): <security:authentication property="principal.authorities" />
+<hr>
+<form:form action="${pageContext.request.contextPath}/logout" method="POST">
+
+    <input type="submit" value="Logout"/>
+</form:form>
 </body>
 </html>
