@@ -13,19 +13,23 @@ Welcome to company home page! <br>
 
 <%--    displaying user ID--%>
 User: <security:authentication property="principal.username"/> <br>
-Role(s): <security:authentication property="principal.authorities" />
+Role(s): <security:authentication property="principal.authorities"/>
 <hr>
 
-<p>
-    <a href="${pageContext.request.contextPath}/leaders">Leadership Meeting (Only for Managers)</a>
-</p>
+<security:authorize access="hasRole('MANAGER')">
+    <p>
+        <a href="${pageContext.request.contextPath}/leaders">Leadership Meeting (Only for Managers)</a>
+    </p>
+</security:authorize>
 
-<p>
-    <a href="${pageContext.request.contextPath}/systems">IT System Meeting (Only for Admins)</a>
-</p>
+<security:authorize access="hasRole('ADMIN')">
+    <p>
+        <a href="${pageContext.request.contextPath}/systems">IT System Meeting (Only for Admins)</a>
+    </p>
+    <hr>
+</security:authorize>
 
 
-<hr>
 <form:form action="${pageContext.request.contextPath}/logout" method="POST">
 
     <input type="submit" value="Logout"/>
