@@ -41,6 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll() // Everyone can see the login form.
                 .and()
                 .logout()  // default -> /logout
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/access-denied");
     }
 }
