@@ -19,17 +19,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         User.UserBuilder users = User.withDefaultPasswordEncoder();
 
         auth.inMemoryAuthentication()
-                .withUser(users.username("utku").password("test123").roles("ADMIN"))
+                .withUser(users.username("utku").password("test123").roles("ADMIN", "EMPLOYEE","MANAGER"))
                 .withUser(users.username("john").password("test123").roles("EMPLOYEE"))
-                .withUser(users.username("susan").password("test123").roles("ADMIN"));
+                .withUser(users.username("susan").password("test123").roles("EMPLOYEE", "MANAGER"));
     }
 
     // bu metod login formu customize etmek için kullanılacak
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+        // Not: restrict based bir yapı kurduğumuz için .anyRequest().authenticated()'e gerek kalmadı
+
         http.authorizeRequests()
-                .anyRequest().authenticated() // any request to the app must be authenticated(logged in)
+                .antMatchers("/").hasRole("EMPLOYEE")
+                .antMatchers("/leaders/**").hasRole("MANAGER")
+                .antMatchers("/systems/**").hasRole("ADMIN")
                 .and()
                 .formLogin() // customizing login page.
                 .loginPage("/showMyLoginPage")

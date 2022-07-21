@@ -15,6 +15,17 @@ Welcome to company home page! <br>
 User: <security:authentication property="principal.username"/> <br>
 Role(s): <security:authentication property="principal.authorities" />
 <hr>
+
+<p>
+    <a href="${pageContext.request.contextPath}/leaders">Leadership Meeting (Only for Managers)</a>
+</p>
+
+<p>
+    <a href="${pageContext.request.contextPath}/systems">IT System Meeting (Only for Admins)</a>
+</p>
+
+
+<hr>
 <form:form action="${pageContext.request.contextPath}/logout" method="POST">
 
     <input type="submit" value="Logout"/>
